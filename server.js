@@ -15,7 +15,7 @@ var cheerio = require("cheerio");
 
 // Initialize Express
 var app = express();
-
+app.use(express.static("public"));
 // Database configuration
 var databaseUrl = "scraper";
 var collections = ["scrapedData"];
