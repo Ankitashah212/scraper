@@ -1,0 +1,32 @@
+{
+  "name": "scraper",
+  "version": "1.0.0",
+  "description": "nytimes scraper into mongo",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.13.4",
+    "mongojs": "^2.3.0",
+    "morgan": "^1.7.0",
+    "request": "^2.83.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ankitashah212/scraper.git"
+  },
+  "keywords": [
+    "mongo",
+    "scraper"
+  ],
+  "author": "ashah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ankitashah212/scraper/issues"
+  },
+  "homepage": "https://github.com/Ankitashah212/scraper#readme"
+}
