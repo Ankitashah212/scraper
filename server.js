@@ -3,6 +3,7 @@ var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 var request = require("request");
+var exphbs = require("express-handlebars");
 
 
 // Our scraping tools
@@ -26,8 +27,12 @@ var app = express();
 
 // Use morgan logger for logging requests
 app.use(logger("dev"));
-// Use body-parser for handling form submissions
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
@@ -39,6 +44,13 @@ mongoose.connect("mongodb://localhost/scraper", {
 // Routes
 
 // A GET route for scraping the echojs website
+app.get("/", function (req, res) {
+  res.render("entry", {
+    results: results,
+    flag: false
+  });
+});
+
 app.get("/scrape", function (req, res) {
 
 
@@ -69,7 +81,10 @@ app.get("/scrape", function (req, res) {
     });
 
     // Log the results once you've looped through each of the elements found with cheerio
-    console.log(results);
+    res.render("index", {
+      results: results,
+      flag: false
+    });
   });
 
 });

@@ -1,0 +1,44 @@
+<style>
+    .hide {
+        visibility: none;
+    }
+</style>
+
+
+
+ {{#each results }} {{#unless flag}}
+<div class="myArticle">
+    <form action="/save/{{this.id}}" method="post"></form>
+    <h4>Title : {{this.title}}</h4>
+    <h4>Link : {{this.link}}</h4>
+    <p>
+        <button id="eat" type="submit"> save </button>
+    </p>
+
+    </form>
+</div>
+{{/unless}} {{/each}}
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content myArticle">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Scrape Complete</h4>
+            </div>
+           
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        console.log("ready!");
+        $("#myModal").modal('toggle');
+    });
+
+</script>

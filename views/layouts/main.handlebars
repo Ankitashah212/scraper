@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Scraper</title>
+	  <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+
+    <!-- Font Awesome Glyphicons -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+    <!-- Chosen -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+
+</head>
+<style>
+	body {
+		background-color: whitesmoke;
+	}
+
+	button {
+		width: 250px;
+		height: 50px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+
+	.option {
+		color: #0D0D1D;
+		font-size: 18px;
+
+	}
+
+	.active {
+		color: red;
+	}
+
+	.myArticle {
+		background-color: #9A9AC0;
+		color: #1F1515;
+		margin: 20px;
+		padding: 5px;
+		border: 1px solid grey;
+		font-size: 18px;
+	}
+
+	.header {
+		margin: 20px;
+	}
+
+	.optionButton {
+		background-color: #9A9AC0;
+
+	}
+</style>
+
+<body>
+	<div class="header">
+		<h2>Mongo Scraper</h2>
+		<ul class="nav nav-tabs">
+			<li class="nav-item">
+				<form action="/scrape" method="get">
+					<button type="submit" class="btn btn-default navbar-btn optionButton">Scrape New Articles</button>
+				</form>
+			</li>
+
+			<li class="nav-item">
+				<form action="/snack/eat/{{this.id}}" method="get">
+					<button type="button" class="btn btn-default navbar-btn optionButton">Saved Articles</button>
+				</form>
+			</li>
+		</ul>
+	</div>
+
+	<div class="result">
+		{{{ body }}}
+	</div>
+
+</body>
+
+</html>
+
+
+<script type="text/javascript">
+
+</script>
+
+</html>
