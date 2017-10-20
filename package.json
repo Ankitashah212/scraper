@@ -8,6 +8,7 @@
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.13.4",
     "mongojs": "^2.3.0",
+    "mongoose": "^4.12.3",
     "morgan": "^1.7.0",
     "request": "^2.83.0"
   },
