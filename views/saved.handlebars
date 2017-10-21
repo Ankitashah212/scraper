@@ -1,0 +1,19 @@
+ {{#each results }}
+<div class="myArticle">
+    <form action="/note/{{this._id}}" method="post">
+        <h4>Title : {{this.title}}</h4>
+        <h4>Link : {{this.link}}</h4>
+        <p>
+            <button id="note" type="button" value="{{this._id}}"> Add Note </button>
+            <button id="remove" type="button" value="{{this._id}}"> Remove </button>
+        </p>
+    </form>
+</div>
+{{/each}}
+
+
+<script>
+
+
+    
+</script>

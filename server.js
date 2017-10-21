@@ -41,6 +41,7 @@ mongoose.connect("mongodb://localhost/scraper", {
   useMongoClient: true
 });
 
+
 // Routes
 
 // A GET route for scraping the echojs website
@@ -69,7 +70,7 @@ app.get("/scrape", function (req, res) {
     // but be sure to visit the package's npm page to see how it works
     $("h2.card__headline").each(function (i, element) {
 
-      var link = "https://www.huffingtonpost.com/" + $(element).children().attr("href");
+      var link = "https://www.huffingtonpost.com" + $(element).children().attr("href");
       var title = $(element).children().text();
 
       // Save these results in an object that we'll push into the results array we defined earlier
@@ -89,14 +90,46 @@ app.get("/scrape", function (req, res) {
 
 });
 
+app.post("/save/:id", function (req, res) {
+  // Save the article
+  var id = req.params.id;
+  console.log(id);
+  var saveObj;
+
+  for (var i = 0; i < results.length; i++) {
+
+    if (results[i].count == id) {
+      saveObj = results[i];
+      results.splice(i, 1);
+    }
+  }
+
+
+  Article
+    .create(saveObj)
+    .then(function (dbArticle) {
+      // If we were able to successfully scrape and save an Article, send a message to the client
+      res.render("index", {
+        results: results,
+        flag: true
+      });
+    })
+    .catch(function (err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
+});
 // Route for getting all Articles from the db
 app.get("/articles", function (req, res) {
   // Grab every document in the Articles collection
-  db.Article
+  Article
     .find({})
     .then(function (dbArticle) {
       // If we were able to successfully find Articles, send them back to the client
-      res.json(dbArticle);
+      res.render("saved", {
+        results: dbArticle
+
+      });
     })
     .catch(function (err) {
       // If an error occurred, send it to the client
