@@ -4,16 +4,55 @@
         <h4>Title : {{this.title}}</h4>
         <h4>Link : {{this.link}}</h4>
         <p>
-            <button id="note" type="button" value="{{this._id}}"> Add Note </button>
+            <button class="note" type="button" value="{{this._id}}"> Add Note </button>
             <button id="remove" type="button" value="{{this._id}}"> Remove </button>
         </p>
     </form>
 </div>
 {{/each}}
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
 
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Notes</h4>
+                <input type="hidden" id="recId" name="recId" value=""></input>
+            </div>
 
+            <div class="modal-body">
+                <p>Note Title</p>
+                <input type="text" id="noteTitle"/>
+                <p>Note</p>
+                <textarea id="noteBody"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="addNote" class="btn btn-default" data-dismiss="modal">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
+    $(document).ready(function () {
+        //set database id as hiden field on toggle to later insert note in db with correct article
+        $(".note").on("click", function () {
+            $("#myModal").modal('toggle');
+            $("#recId").val($(this).val());
+        });
 
 
-    
+        $("#addNote").on("click", function () {
+
+            var currentURL = window.location.origin;
+            var userData = {
+                id: $("#recId").val(),
+                title:  $("#noteTitle").val(),
+                note: $("#noteBody").val()
+            }
+            $.post(currentURL + "/addNote", userData, function (data) {
+            });
+        });
+    });
 </script>
