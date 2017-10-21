@@ -9,7 +9,8 @@ var mongoose = require("mongoose");
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/scraper", {
+//mongodb://<dbuser>:<dbpassword>@ds227865.mlab.com:27865/heroku_7pjlzmgr
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/scraper", {
   useMongoClient: true
 });
 
