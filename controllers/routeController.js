@@ -153,4 +153,18 @@ router.get("/", function (req, res) {
       });
   });
   
+  router.post("/delete/:id", function (req, res) {
+    // Grab every document in the Articles collection
+    Article
+      .remove({ _id: req.params.id })
+      .then(function (dbArticle) {
+        // If we were able to successfully delete Articles, redirect to saved article page
+        res.redirect("/articles")
+      })
+      .catch(function (err) {
+        // If an error occurred, send it to the client
+        res.json(err);
+      });
+  });
+
 module.exports = router;

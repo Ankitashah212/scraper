@@ -88,5 +88,14 @@
             $.post(currentURL + "/addNote", userData, function (data) {
             });
         });
+
+        $("#remove").on("click", function () {
+            //delete an article
+            var url = currentURL + "/delete/" + $(this).val();
+            console.log(url);
+            $.post(url, function (data) {
+                window.location.reload();
+            });
+        });
     });
 </script>
