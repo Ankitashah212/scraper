@@ -1,15 +1,16 @@
 <style>
-a {
-    color: rgb(83, 114, 16);
-}
-
+    a {
+        color: rgb(83, 114, 16);
+    }
 </style>
 
- {{#each results }}
+{{#each results }}
 <div class="myArticle">
     <form action="/note/{{this._id}}" method="post">
         <h4>Title : {{this.title}}</h4>
-        <h4>Link : <a href="{{this.link}}" target="_blank" >{{this.link}}</a>    </h4>
+        <h4>Link :
+            <a href="{{this.link}}" target="_blank">{{this.link}}</a>
+        </h4>
         <p>
             <button class="note" type="button" value="{{this._id}}"> Add Note </button>
             <button id="remove" type="button" value="{{this._id}}"> Remove </button>
@@ -77,9 +78,8 @@ a {
 
         });
 
-
         $("#addNote").on("click", function () {
-
+            //save note to an article
             var userData = {
                 id: $("#recId").val(),
                 title: $("#noteTitle").val(),
@@ -88,6 +88,5 @@ a {
             $.post(currentURL + "/addNote", userData, function (data) {
             });
         });
-
     });
 </script>

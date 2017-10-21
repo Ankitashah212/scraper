@@ -40,8 +40,6 @@ router.get("/", function (req, res) {
       //reset results
       results = [];
       // Select each element in the HTML body from which you want information.
-      // NOTE: Cheerio selectors function similarly to jQuery's selectors,
-      // but be sure to visit the package's npm page to see how it works
       $("h2.card__headline").each(function (i, element) {
   
         var link = "https://www.huffingtonpost.com" + $(element).children().attr("href");
