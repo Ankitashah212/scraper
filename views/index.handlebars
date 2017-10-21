@@ -1,18 +1,19 @@
 <style>
-    .hide {
-        visibility: none;
-    }
+  
+a {
+    color: rgb(83, 114, 16);
+}
+
 </style>
 
- {{#unless flag}}
+{{#unless flag}}
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-
         <!-- Modal content-->
-        <div class="modal-content myArticle">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <div class="modal-content">
+            <div class="modal-header  myArticle">
                 <h4 class="modal-title">Scrape Complete</h4>
+                <h4>Total {{results.length}} articles scraped</h4>
             </div>
 
             <div class="modal-footer">
@@ -22,39 +23,36 @@
 
     </div>
 </div>
+
 <script>
     $(document).ready(function () {
 
-            $("#myModal").modal('toggle');
-
-       
+        $("#myModal").modal('toggle');
     });
-</script> 
-{{#each results }}
+</script> {{#each results }}
 <div class="myArticle">
     <form action="/save/{{this.count}}" method="post">
         <h4>Title : {{this.title}}</h4>
-        <h4>Link : {{this.link}}</h4>
+        <h4>Link :
+            <a href="{{this.link}}" target="_blank">{{this.link}}</a>
+        </h4>
         <p>
             <button id="eat" type="submit"> save </button>
         </p>
 
     </form>
 </div>
- {{/each}}
-{{/unless}}
-
-
-
-{{#if flag}}{{#each results }} 
+{{/each}} {{/unless}} {{#if flag}}{{#each results }}
 <div class="myArticle">
     <form action="/save/{{this.count}}" method="post">
         <h4>Title : {{this.title}}</h4>
-        <h4>Link : {{this.link}}</h4>
+        <h4>Link :
+            <a href="{{this.link}}" target="_blank">{{this.link}}</a>
+        </h4>
         <p>
             <button id="eat" type="submit"> save </button>
         </p>
 
     </form>
 </div>
-{{/each}}{{/if}} 
+{{/each}}{{/if}}

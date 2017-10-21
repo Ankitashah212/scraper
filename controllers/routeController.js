@@ -1,12 +1,9 @@
 var express = require("express");
-
-
 var router = express.Router();
 
 // An empty array to save the data that we'll scrape  
 var results = [];
 var request = require("request");
-
 
 var mongoose = require("mongoose");
 // Set mongoose to leverage built in JavaScript ES6 Promises
@@ -33,8 +30,6 @@ router.get("/", function (req, res) {
   
   router.get("/scrape", function (req, res) {
   
-  
-  
     // Make a request call to grab the HTML body from the site of your choice
     request("https://www.huffingtonpost.com/", function (error, response, html) {
   
@@ -42,8 +37,8 @@ router.get("/", function (req, res) {
       // '$' becomes a shorthand for cheerio's selector commands, much like jQuery's '$'
       var $ = cheerio.load(html);
   
-  
-  
+      //reset results
+      results = [];
       // Select each element in the HTML body from which you want information.
       // NOTE: Cheerio selectors function similarly to jQuery's selectors,
       // but be sure to visit the package's npm page to see how it works
@@ -118,7 +113,7 @@ router.get("/", function (req, res) {
   // Route for grabbing a specific Article by id, populate it with it's note
   router.get("/articles/:id", function (req, res) {
     // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
-    db.Article
+    Article
       .findOne({ _id: req.params.id })
       // ..and populate all of the notes associated with it
       .populate("note")
@@ -134,7 +129,6 @@ router.get("/", function (req, res) {
   
   // Route for saving/updating an Article's associated Note
   router.post("/addNote", function (req, res) {
-console.log("hi");
     var note = {
         title : req.body.title,
         body : req.body.note

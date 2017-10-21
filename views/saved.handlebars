@@ -1,8 +1,15 @@
+<style>
+a {
+    color: rgb(83, 114, 16);
+}
+
+</style>
+
  {{#each results }}
 <div class="myArticle">
     <form action="/note/{{this._id}}" method="post">
         <h4>Title : {{this.title}}</h4>
-        <h4>Link : {{this.link}}</h4>
+        <h4>Link : <a href="{{this.link}}" target="_blank" >{{this.link}}</a>    </h4>
         <p>
             <button class="note" type="button" value="{{this._id}}"> Add Note </button>
             <button id="remove" type="button" value="{{this._id}}"> Remove </button>
@@ -24,7 +31,7 @@
 
             <div class="modal-body">
                 <p>Note Title</p>
-                <input type="text" id="noteTitle"/>
+                <input type="text" id="noteTitle" />
                 <p>Note</p>
                 <textarea id="noteBody"></textarea>
             </div>
@@ -36,23 +43,51 @@
 </div>
 <script>
     $(document).ready(function () {
+        var currentURL = window.location.origin;
+
         //set database id as hiden field on toggle to later insert note in db with correct article
         $(".note").on("click", function () {
+            //get article id to find existing notes if any
+            var thisId = $(this).val();
+            //reset note body (otherwise keeps value of previous note)
+            $("#noteTitle").val("");
+            $("#noteBody").val("");
+            //toggle modal
             $("#myModal").modal('toggle');
+            // set id as hidden field to save the note
             $("#recId").val($(this).val());
+
+            // Now make an ajax call for the Article
+            $.ajax({
+                method: "GET",
+                url: "/articles/" + thisId
+            })
+                // With that done, add the note information to the page
+                .done(function (data) {
+                    console.log(data);
+
+                    // If there's a note in the article
+                    if (data.note) {
+                        // Place the title of the note in the title input
+                        $("#noteTitle").val(data.note.title);
+                        // Place the body of the note in the body textarea
+                        $("#noteBody").val(data.note.body);
+                    }
+                });
+
         });
 
 
         $("#addNote").on("click", function () {
 
-            var currentURL = window.location.origin;
             var userData = {
                 id: $("#recId").val(),
-                title:  $("#noteTitle").val(),
+                title: $("#noteTitle").val(),
                 note: $("#noteBody").val()
             }
             $.post(currentURL + "/addNote", userData, function (data) {
             });
         });
+
     });
 </script>
