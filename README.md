@@ -1,4 +1,5 @@
-# scraper
+# Scraper
+# Scraping huffington post for the news feeds
 Creating a scraper with cheerios and mango db and mongoose
 
 
