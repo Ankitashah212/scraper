@@ -1,6 +1,11 @@
 # scraper
-Creating a scraper with cheerios and mango db and magoose
+Creating a scraper with cheerios and mango db and mongoose
 
 
-* Enforrcing one to may relationship weith Mangoose
+* Enforcing one to may relationship with mongoose
+* Model for mongoose with relationship
+* Demonstrating CRUD 
+* Dynamic UI generated with {{}} handlebars
+* Bootstrap modal
+
 
