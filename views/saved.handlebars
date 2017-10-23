@@ -6,14 +6,14 @@
 
 {{#each results }}
 <div class="myArticle">
-    <form action="/note/{{this._id}}" method="post">
+    <form action="/delete/{{this._id}}" method="post">
         <h4>Title : {{this.title}}</h4>
         <h4>Link :
             <a href="{{this.link}}" target="_blank">{{this.link}}</a>
         </h4>
         <p>
             <button class="note" type="button" value="{{this._id}}"> Add Note </button>
-            <button id="remove" type="button" value="{{this._id}}"> Remove </button>
+            <button id="remove" type="submit" value="{{this._id}}"> Remove </button>
         </p>
     </form>
 </div>
@@ -88,7 +88,7 @@
             $.post(currentURL + "/addNote", userData, function (data) {
             });
         });
-
+/*
         $("#remove").on("click", function () {
             //delete an article
             var url = currentURL + "/delete/" + $(this).val();
@@ -96,6 +96,6 @@
             $.post(url, function (data) {
                 window.location.reload();
             });
-        });
+        });*/
     });
 </script>
