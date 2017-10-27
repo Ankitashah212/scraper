@@ -10,4 +10,4 @@ Creating a scraper with cheerios and mango db and mongoose
 * Bootstrap modal
 
 Deployed on Heroku
-https://hidden-bayou-83879.herokuapp.com/scrape?
+https://hidden-bayou-83879.herokuapp.com
